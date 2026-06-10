@@ -1,0 +1,326 @@
+/* --- Variáveis e Reset --- */
+:root {
+    --bg-color: #040906; /* Fundo principal escuro idêntico ao design */
+    --text-white: #ffffff;
+    --text-gray: #a8b8b0;
+    --border-color: rgba(255, 255, 255, 0.3);
+    
+    /* Cores exatas dos botões do design */
+    --btn-border-green: #115c38; 
+    --btn-bg-green: rgba(17, 92, 56, 0.2); 
+    
+    --font-sans: 'Inter', sans-serif;
+    --font-serif: 'Playfair Display', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-white);
+    font-family: var(--font-sans);
+    overflow-x: hidden; /* CORREÇÃO CRÍTICA: Corta o vazamento tanto na horizontal quanto na vertical */
+}
+
+/* --- Header e Navegação --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem 6%;
+    
+    /* AS MUDANÇAS CHAVE: */
+    position: absolute; /* Tira o header do fluxo, fazendo-o flutuar sobre o hero */
+    top: 0;             /* Fixa no topo da tela */
+    left: 0;            /* Alinha à esquerda */
+    width: 100%;        /* Faz ocupar toda a largura da tela */
+    z-index: 100;       /* Garante que fique acima de todos os elementos (textos e brilhos) */
+    background: transparent; /* Garante que não tenha fundo sólido */
+}
+
+.logo h3 {
+    font-family: var(--font-sans);
+    font-style: italic;
+    font-weight: 900;
+    font-size: 1.8rem;
+    letter-spacing: -0.5px;
+}
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+    gap: 3rem;
+}
+
+.nav-links a {
+    color: var(--text-white);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--text-gray);
+}
+
+/* --- Botões --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1.6rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn svg {
+    transition: transform 0.3s;
+}
+
+.btn:hover svg {
+    transform: translateX(3px);
+}
+
+.btn-outline {
+    color: var(--text-white);
+    border: 1px solid hsl(0, 0%, 70%);
+    background: transparent;
+}
+
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.btn-primary {
+    color: var(--text-white);
+    border: 0.3px solid #A3E635;
+    background: #0B574D;
+}
+
+.btn-primary:hover {
+    background: rgba(17, 92, 56, 0.4);
+}
+
+/* --- Seção Hero --- */
+.hero-section {
+    position: relative;
+    height: 110vh; /* CORREÇÃO: Desconta o tamanho do header para não criar scroll */
+    display: flex;
+    align-items: center;
+    padding: 0 6%;
+    overflow: hidden;
+}
+
+/* Efeitos de Iluminação (Glows) */
+.fundo-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(140px);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.verde-esq {
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(14, 82, 54, 0.25) 0%, rgba(4, 9, 6, 0) 65%);
+    bottom: -30%;
+    left: -20%;
+}
+
+.verde-dir {
+    width: 900px;
+    height: 900px;
+    background: radial-gradient(circle, rgba(14, 82, 54, 0.2) 0%, rgba(4, 9, 6, 0) 65%);
+    top: -10%;
+    right: -10%;
+}
+
+/* Conteúdo Principal */
+.container-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* CORREÇÃO: Voltei para space-between para manter o texto na esquerda */
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.texto-hero {
+    width: 100%;
+    max-width: 700px;
+    margin-top: -10vh;
+    z-index: 10;
+}
+
+.texto-hero h1 {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 400;
+    line-height: 1.35;
+    letter-spacing: 6px; /* CORREÇÃO: Substituí o 25% inválido por 6px */
+    margin-bottom: 1.5rem;
+    color: var(--text-white);
+}
+
+.texto-hero p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: hsl(0, 0%, 80%);
+    margin-bottom: 2.5rem;
+    max-width: 580px;
+}
+
+.texto-hero .buttons {
+    display: flex;
+    gap: 1.2rem;
+}
+
+/* Imagem do Celular Sangrando a Tela */
+.imagem-hero {
+    position: absolute;
+    left: 35%;
+    top: 165%;
+    transform: translateY(-45%);
+    width: 1050px;
+    height: 1000px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.imagem-hero img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.fundo-verde1{
+    position: absolute;
+    /* Rectangle 31 */
+
+position: absolute;
+width: 1341px;
+height: 465.33px;
+left: 412.66px;
+top: -186.91px;
+
+background: linear-gradient(268.04deg, #005F53 15.13%, #0B4A42 73.56%);
+filter: blur(150px);
+transform: rotate(-40.27deg);
+}
+
+.fundo-verde2{
+    /* Rectangle 30 */
+
+position: absolute;
+width: 986px;
+height: 460px;
+left: 0px;
+top: 300px;
+
+background: #005F53;
+filter: blur(150px);
+
+}
+
+.fundo-preto {
+    position: absolute;
+    top: 170%;
+
+    min-width: 2500px;
+    height: 150px;
+
+    background: linear-gradient(180deg, rgba(1, 85, 74, 0.7) 0%, #000000 50%);
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.8);
+filter: blur(20px);
+
+
+    z-index: 22;
+    pointer-events: none;
+}
+
+
+.about-section {
+    padding: 100px 6%;
+    background-color: var(--bg-color);
+    color: var(--text-white);
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+}
+
+/* Imagem e Linha Curva */
+.about-image-side {
+    position: relative;
+    flex: 1;
+}
+
+.about-img {
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    z-index: 2;
+}
+
+.curved-line {
+    position: absolute;
+    bottom: -30px;
+    left: 20%;
+    width: 200px;
+    height: 40px;
+    border-bottom: 3px solid #4fee61;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Conteúdo e Passos */
+.about-content-side {
+    flex: 1;
+}
+
+.about-title {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    line-height: 1.1;
+    color: #4fee61; /* Cor verde do design */
+    margin-bottom: 50px;
+}
+
+.steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.2rem;
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    background: #115c38;
+    border: 2px solid #4fee61;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
