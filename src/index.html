@@ -77,8 +77,13 @@
           <img src="../Assets/about-image.webp" alt="Mockup do Aplicativo" class="about-img">
           
           <div class="decorative-curve">
-          <svg viewBox="0 0 900 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M 0 220 L 320 220 C 550 220 830 190 900 5" stroke="#015348" stroke-width="5" stroke-linecap="round" opacity="0.7"/>
+       <svg viewBox="0 0 1200 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+        class="timeline-path"
+        d="M 0 250
+   L 350 250
+   C 650 250 1000 80 1200 -700"
+    />
 </svg>
           </div>
         </div>
@@ -128,84 +133,141 @@
 </section>
     </main>
 
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        
-        // --- 1. NOVO OBSERVADOR DO HERO ---
-        // Agora observamos a SEÇÃO FIXA, e não os elementos que se movem
-        const heroSection = document.querySelector('.hero-section');
-        const elementosParaAnimar = document.querySelectorAll('.header, .texto-hero, .imagem-hero');
+   <script>
+document.addEventListener("DOMContentLoaded", function() {
+    
+    // --- 1. OBSERVADOR DO HERO ---
+    const heroSection = document.querySelector('.hero-section');
+    const elementosParaAnimar = document.querySelectorAll('.header, .texto-hero, .imagem-hero');
 
-        const heroObserver = new IntersectionObserver((entries) => {
+    const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                elementosParaAnimar.forEach(el => el.classList.add('animar'));
+            } else {
+                elementosParaAnimar.forEach(el => el.classList.remove('animar'));
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    if (heroSection) {
+        heroObserver.observe(heroSection);
+    }
+    // -----------------------------------------------------------------
+
+
+    // --- 2. OBSERVADOR DOS ÍCONES DA TIMELINE ---
+    const timelineItems = document.querySelectorAll('.timeline-item');
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -30% 0px',
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('aceso');
+            } else {
+                entry.target.classList.remove('aceso');
+            }
+        });
+    }, observerOptions);
+
+    timelineItems.forEach(item => {
+        observer.observe(item);
+    });
+    // -----------------------------------------------------------------
+
+
+    // --- 3. PREPARAÇÃO DO SVG DA TIMELINE ---
+    const svgPath = document.querySelector('.timeline-path');
+    let comprimentoSVG = 0;
+
+    if (svgPath) {
+        comprimentoSVG = svgPath.getTotalLength();
+
+        svgPath.style.strokeDasharray = comprimentoSVG;
+        svgPath.style.strokeDashoffset = comprimentoSVG;
+    }
+    // -----------------------------------------------------------------
+
+
+    // --- 4. LÓGICA DA LINHA DE PROGRESSO + SVG ---
+    const timelineContainer = document.querySelector('.about-timeline');
+
+    function atualizarLinhaDeProgresso() {
+
+        if (!timelineContainer) return;
+
+        const rect = timelineContainer.getBoundingClientRect();
+
+        const pontoDeGatilho = window.innerHeight * 0.7;
+        const inicioLinha = rect.top + 30;
+        const alturaTotalDaLinha = rect.height - 10;
+
+        const pixelsRolados = pontoDeGatilho - inicioLinha;
+
+        let porcentagem = (pixelsRolados / alturaTotalDaLinha) * 100;
+
+        if (porcentagem < 0) porcentagem = 0;
+        if (porcentagem > 100) porcentagem = 100;
+
+        // Linha vertical da timeline
+        timelineContainer.style.setProperty(
+            '--linha-progresso',
+            `${porcentagem}%`
+        );
+
+        // SVG acompanha exatamente o mesmo progresso
+        if (svgPath) {
+            svgPath.style.strokeDashoffset =
+                comprimentoSVG * (1 - porcentagem / 100);
+        }
+    }
+
+    window.addEventListener('scroll', atualizarLinhaDeProgresso);
+    atualizarLinhaDeProgresso();
+    // -----------------------------------------------------------------
+
+
+    // --- 5. ANIMAÇÃO DO TÍTULO ABOUT ---
+    const aboutSection = document.querySelector('.about-section');
+    const aboutTitle = document.querySelector('.about-title');
+
+    if (aboutSection && aboutTitle) {
+
+        let entrouNaSecao = false;
+
+        const aboutObserver = new IntersectionObserver((entries) => {
+
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Quando a seção Hero entra na tela, anima todos os elementos
-                    elementosParaAnimar.forEach(el => el.classList.add('animar'));
-                } else {
-                    // Quando a seção Hero sai, remove a classe de todos para resetar
-                    elementosParaAnimar.forEach(el => el.classList.remove('animar'));
+
+                if (entry.isIntersecting && !entrouNaSecao) {
+                    aboutTitle.classList.add('animar');
+                    entrouNaSecao = true;
                 }
+
+                if (!entry.isIntersecting) {
+                    aboutTitle.classList.remove('animar');
+                    entrouNaSecao = false;
+                }
+
             });
+
         }, {
-            threshold: 0.1 
+            threshold: 0,
+            rootMargin: "0px 0px -40% 0px"
         });
 
-        // Só inicia o observador se a seção hero existir na página
-        if (heroSection) {
-            heroObserver.observe(heroSection);
-        }
-        // -----------------------------------------------------------------
+        aboutObserver.observe(aboutSection);
+    }
+    // -----------------------------------------------------------------
 
-
-        // --- 2. OBSERVADOR DOS ÍCONES DA TIMELINE ---
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        const observerOptions = {
-            root: null, 
-            rootMargin: '0px 0px -30% 0px', 
-            threshold: 0
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('aceso');
-                } else {
-                    entry.target.classList.remove('aceso');
-                }
-            });
-        }, observerOptions);
-
-        timelineItems.forEach(item => {
-            observer.observe(item);
-        }); // <- CORREÇÃO: O forEach agora fecha aqui!
-        // -----------------------------------------------------------------
-
-
-        // --- 3. LÓGICA DA LINHA DE PROGRESSO DO SCROLL ---
-        const timelineContainer = document.querySelector('.about-timeline');
-
-        function atualizarLinhaDeProgresso() {
-            if (!timelineContainer) return;
-
-            const rect = timelineContainer.getBoundingClientRect();
-            const pontoDeGatilho = window.innerHeight * 0.7; 
-            const inicioLinha = rect.top + 30; 
-            const alturaTotalDaLinha = rect.height - 10; 
-            const pixelsRolados = pontoDeGatilho - inicioLinha;
-
-            let porcentagem = (pixelsRolados / alturaTotalDaLinha) * 100;
-
-            if (porcentagem < 0) porcentagem = 0;
-            if (porcentagem > 100) porcentagem = 100;
-
-            timelineContainer.style.setProperty('--linha-progresso', `${porcentagem}%`);
-        }
-
-        window.addEventListener('scroll', atualizarLinhaDeProgresso);
-        atualizarLinhaDeProgresso();
-        // -----------------------------------------------------------------
-
-    });
+});
 </script>
 </body>
 </html>

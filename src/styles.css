@@ -333,6 +333,18 @@ filter: blur(20px);
     margin: 0 auto;
 }
 
+@keyframes surgindoDeBaixoAbout {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Estilização do Título */
 .about-title {
     text-align: center;
@@ -341,7 +353,12 @@ filter: blur(20px);
     line-height: 1.1;
     margin-bottom: 70px;
     letter-spacing: -1px;
-    animation: surgindoDeBaixo 2s ease-out;
+    opacity: 0;
+    transform: translateY(100px);
+}
+
+.about-title.animar {
+    animation: surgindoDeBaixoAbout 1s ease-out forwards;
 }
 
 .highlight-light {
@@ -394,7 +411,7 @@ filter: blur(20px);
     position: absolute;
     bottom: 0; /* Mudamos de -15px para 0 para evitar que o 'overflow: hidden' da seção corte a linha */
     left: 0;
-    width: 700px;
+    width: 900px;
     z-index: 1; /* Fica atrás da imagem (que é z-index 2) */
     pointer-events: none;
 }
@@ -404,6 +421,14 @@ filter: blur(20px);
     width: 100%;
     height: auto;
     display: block;
+}
+
+.timeline-path {
+    fill: none;
+    stroke: #015348;
+    stroke-width: 5;
+    stroke-linecap: round;
+    opacity: 0.7;
 }
 
 /* Timeline (Lado Direito) */
