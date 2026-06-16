@@ -1,0 +1,11 @@
+Projeto da landing page para o aplicativo Paggo, que é um uma solução de gerenciamento financeiro pessoal
+
+---Instruções de como rodar a landing page no seu computador: 
+
+1- Baixe a pasta zipada do projeto no seu computador e extrai-lo.
+2- Você precisará do vscode instalado, e as linguagens html, css e javascript instaladas em seu computador.
+3- Abra a pasta onde foi extraido o projeto no VSCODE.
+4- Precisará da extensão live server instalada para ver o projeto rodando na web.
+5- Entre no arquivo index.html e na barrinha de baixo do VSCODE clique em Go Live, que é a extensão live server, assim o projeto ira abrir no seu navegador. Obs: Precisa estar no arquivo index.html para o live server abrir o projeto ja rodando automaticamente.
+
+OBS: Foram criadas apenas 2 paginas da landing page, já com animações para deixar mais imersivo a navegação do projeto, os botões foram criadas apenas para estilização da landing page por enquanto.

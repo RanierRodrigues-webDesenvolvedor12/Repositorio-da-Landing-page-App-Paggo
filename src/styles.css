@@ -1,11 +1,11 @@
 /* --- Variáveis e Reset --- */
 :root {
-    --bg-color: #040906; /* Fundo principal escuro idêntico ao design */
+    --bg-color: #040906; 
     --text-white: #ffffff;
     --text-gray: #a8b8b0;
     --border-color: rgba(255, 255, 255, 0.3);
     
-    /* Cores exatas dos botões do design */
+    
     --btn-border-green: #115c38; 
     --btn-bg-green: rgba(17, 92, 56, 0.2); 
     
@@ -23,14 +23,13 @@ body {
     background-color: var(--bg-color);
     color: var(--text-white);
     font-family: var(--font-sans);
-    overflow-x: hidden; /* CORREÇÃO CRÍTICA: Corta o vazamento tanto na horizontal quanto na vertical */
+    overflow-x: hidden; 
 }
 
 body,html{
     scroll-behavior: smooth;
 }
 
-/* --- Header e Navegação --- */
 .header {
     display: flex;
     justify-content: space-between;
@@ -38,13 +37,13 @@ body,html{
     padding: 2.5rem 6%;
     
     /* AS MUDANÇAS CHAVE: */
-    position: absolute; /* Tira o header do fluxo, fazendo-o flutuar sobre o hero */
-    top: 0;             /* Fixa no topo da tela */
-    left: 0;            /* Alinha à esquerda */
-    width: 100%;        /* Faz ocupar toda a largura da tela */
-    z-index: 100;       /* Garante que fique acima de todos os elementos (textos e brilhos) */
-    background: transparent; /* Garante que não tenha fundo sólido */
-    opacity: 0;         /* Começa invisível para aguardar o gatilho do JS */
+    position: absolute; 
+    top: 0;             
+    left: 0;            
+    width: 100%;        
+    z-index: 100;      
+    background: transparent; 
+    opacity: 0;        
 }
 
 .logo h3 {
@@ -73,7 +72,7 @@ body,html{
     color: var(--text-gray);
 }
 
-/* --- Botões --- */
+
 .btn {
     display: inline-flex;
     align-items: center;
@@ -115,17 +114,16 @@ body,html{
     background: rgba(17, 92, 56, 0.4);
 }
 
-/* --- Seção Hero --- */
+
 .hero-section {
     position: relative;
-    height: 110vh; /* CORREÇÃO: Desconta o tamanho do header para não criar scroll */
+    height: 110vh;
     display: flex;
     align-items: center;
     padding: 0 6%;
     overflow: hidden;
 }
 
-/* Efeitos de Iluminação (Glows) */
 .fundo-glow {
     position: absolute;
     border-radius: 50%;
@@ -154,7 +152,7 @@ body,html{
 .container-hero {
     display: flex;
     align-items: center;
-    justify-content: center; /* CORREÇÃO: Voltei para space-between para manter o texto na esquerda */
+    justify-content: center; 
     width: 100%;
     position: relative;
     z-index: 2;
@@ -165,7 +163,7 @@ body,html{
     max-width: 700px;
     margin-top: -10vh;
     z-index: 10;
-    opacity: 0; /* Começa invisível para aguardar o gatilho do JS */
+    opacity: 0;
 }
 
 .texto-hero h1 {
@@ -173,7 +171,7 @@ body,html{
     font-size: 3rem;
     font-weight: 400;
     line-height: 1.35;
-    letter-spacing: 6px; /* CORREÇÃO: Substituí o 25% inválido por 6px */
+    letter-spacing: 6px; 
     margin-bottom: 1.5rem;
     color: var(--text-white);
 }
@@ -191,7 +189,7 @@ body,html{
     gap: 1.2rem;
 }
 
-/* Imagem do Celular Sangrando a Tela */
+
 .imagem-hero {
     position: absolute;
     left: 33%;
@@ -201,7 +199,7 @@ body,html{
     height: 1000px;
     z-index: 1;
     pointer-events: none;
-    opacity: 0; /* Começa invisível para aguardar o gatilho do JS */
+    opacity: 0; 
 }
 
 .imagem-hero img {
@@ -227,7 +225,6 @@ transform: rotate(-40.27deg);
 }
 
 .fundo-verde2{
-    /* Rectangle 30 */
 
 position: absolute;
 width: 986px;
@@ -257,7 +254,6 @@ filter: blur(20px);
 }
 
 
-/*Estilizando animações de entrada*/
 
 @keyframes surgindoDeBaixo{
     from{
@@ -284,20 +280,18 @@ filter: blur(20px);
 @keyframes imagemHerosurgindo{
     0% {
         opacity: 0;
-        /* Mantemos o translateY que você já usava, mas adicionamos um scale menor */
         transform: translateY(calc(-45% + 60px));
-        /* Opcional: um blur (desfoque) bem leve dá um ar cinematográfico Apple-style */
         filter: blur(5px); 
     }
     100% {
         opacity: 1;
-        /* Volta para o tamanho original, mantendo a posição */
+        
         transform: translateY(-45%);
         filter: blur(0);
     }
 }
 
-/* CLASSES DO GATILHO: Disparadas pelo Intersection Observer do JavaScript */
+
 .header.animar {
     animation: elementosSurgindo 2s ease-out forwards;
 }
@@ -314,12 +308,12 @@ filter: blur(20px);
 
 
 .about-section {
-    /* Fundo verde bem escuro com um leve gradiente central para dar profundidade */
+    
   background: linear-gradient(
         to bottom, 
-        #000000 0%,     /* Inicia totalmente preto */
-        #01201c 60%,    /* No meio do caminho, usa um tom intermediário escuro */
-        #024038 100%    /* Termina na sua cor principal */
+        #000000 0%,     
+        #01201c 60%,    
+        #024038 100%    
     );
     padding: 140px 20px;
     font-family: 'Inter', sans-serif;
@@ -348,7 +342,7 @@ filter: blur(20px);
 /* Estilização do Título */
 .about-title {
     text-align: center;
-    font-size: 6rem; /* Tamanho grande conforme o design */
+    font-size: 6rem; 
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: 70px;
@@ -362,14 +356,14 @@ filter: blur(20px);
 }
 
 .highlight-light {
-    color: #7ed321; /* Verde claro vibrante */
+    color: #7ed321; 
 }
 
 .highlight-dark {
-    color: #3b8448; /* Verde mais suave/fechado */
+    color: #3b8448; 
 }
 
-/* Layout das Colunas */
+
 .about-content-wrapper {
     display: flex;
     align-items: center;
@@ -380,20 +374,18 @@ filter: blur(20px);
 .about-image-side {
     flex: 1;
     position: relative;
-    /* Define uma altura mínima para garantir que a coluna tenha espaço, 
-       já que a imagem dentro dela terá posição absoluta */
     min-height: 600px; 
 }
 
 .image-wrapper {
     position: absolute;
-    /* Puxamos a imagem para a esquerda e para baixo, rompendo a margem interna */
+    
     left: -355px; 
     bottom: -80px; 
     
-    /* Aumentamos a largura para ela ficar imponente como no design */
+    
     width: 120%; 
-    max-width: 850px; /* Limite de segurança para não crescer infinitamente em telas gigantes */
+    max-width: 850px; 
     z-index: 2;
 }
 
@@ -403,20 +395,20 @@ filter: blur(20px);
     display: block;
     position: relative;
     z-index: 2;
-    /* Removi a duplicidade de "position" que havia no seu código original */
+    
 }
 
-/* A curva sutil verde atrás da mão */
+
 .decorative-curve {
     position: absolute;
-    bottom: 0; /* Mudamos de -15px para 0 para evitar que o 'overflow: hidden' da seção corte a linha */
+    bottom: 0; 
     left: 0;
     width: 900px;
-    z-index: 1; /* Fica atrás da imagem (que é z-index 2) */
+    z-index: 1; 
     pointer-events: none;
 }
 
-/* NOVO: Força o SVG a aparecer e calcular a altura automaticamente */
+
 .decorative-curve svg {
     width: 100%;
     height: auto;
@@ -431,7 +423,7 @@ filter: blur(20px);
     opacity: 0.7;
 }
 
-/* Timeline (Lado Direito) */
+
 .about-content-side {
     flex: 1;
     padding-left: 60px;
@@ -440,11 +432,11 @@ filter: blur(20px);
 .about-timeline {
     display: flex;
     flex-direction: column;
-    gap: 150px; /* Espaço entre os passos */
+    gap: 150px; 
     position: relative;
 }
 
-/* A linha vertical que conecta os ícones */
+
 .about-timeline::before {
     content: '';
     position: absolute;
@@ -452,11 +444,11 @@ filter: blur(20px);
     bottom: 30px;
     left: 38px;
     width: 4px;
-    background-color: #1a3821; /* Mesma cor verde bem escura dos ícones apagados */
+    background-color: #1a3821; 
     z-index: 0;
 }
 
-/* 2. A Linha Brilhante (O Progresso) */
+
 .about-timeline::after {
     content: '';
     position: absolute;
@@ -464,14 +456,14 @@ filter: blur(20px);
     left: 38px;
     width: 4px;
     
-    /* A MÁGICA ESTÁ AQUI: O JavaScript vai alterar esse valor entre 0% e 100% */
+    
     height: var(--linha-progresso, 0%); 
     
-    background-color: #63c035; /* Verde vibrante */
-    box-shadow: 0 0 15px 3px rgba(99, 192, 53, 0.5); /* Glow verde na linha */
+    background-color: #63c035; 
+    box-shadow: 0 0 15px 3px rgba(99, 192, 53, 0.5); 
     z-index: 0;
     
-    /* Deixa o movimento da linha um pouco mais suave ao rolar o mouse */
+   
     transition: height 0.1s ease-out; 
 }
 
@@ -487,18 +479,18 @@ filter: blur(20px);
     flex-shrink: 0;
 }
 
-/* O círculo verde com o efeito de brilho (Glow) */
+
 .timeline-icon {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background-color: #1a3821; /* Verde bem mais escuro para parecer apagado */
+    background-color: #1a3821; 
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 0px 0px rgba(99, 192, 53, 0); /* Sem brilho inicial */
+    box-shadow: 0 0 0px 0px rgba(99, 192, 53, 0); 
     
-    /* A transição é o segredo do profissionalismo: faz a mudança ser suave */
+    /
     transition: background-color 0.6s ease, box-shadow 0.6s ease; 
 }
 
@@ -507,7 +499,7 @@ filter: blur(20px);
     height: 32px;
     stroke: #06130b;
     stroke-width: 2.5;
-    opacity: 0.4; /* Ícone levemente transparente */
+    opacity: 0.4; 
     transition: opacity 0.6s ease;
 }
 
@@ -515,7 +507,7 @@ filter: blur(20px);
     font-size: 1.3rem;
     font-weight: 600;
     line-height: 1.4;
-    color: rgba(255, 255, 255, 0.3); /* Texto cinza/transparente */
+    color: rgba(255, 255, 255, 0.3); /
     max-width: 380px;
     transition: color 0.6s ease;
 }
@@ -524,10 +516,9 @@ filter: blur(20px);
     margin: 0;
 }
 
-/* --- ESTADO FINAL: ACESO (Adicionado pelo JS) --- */
 .timeline-item.aceso .timeline-icon {
-    background-color: #63c035; /* Verde vibrante */
-    box-shadow: 0 0 35px 5px rgba(99, 192, 53, 0.5); /* O Glow / Brilho aparece */
+    background-color: #63c035; 
+    box-shadow: 0 0 35px 5px rgba(99, 192, 53, 0.5); 
 }
 
 .timeline-item.aceso .timeline-icon svg {
@@ -535,10 +526,10 @@ filter: blur(20px);
 }
 
 .timeline-item.aceso .timeline-text {
-    color: #ffffff; /* Texto acende e fica 100% branco */
+    color: #ffffff; 
 }
 
-/* Adicionando responsividade para telas menores (Tablets e Celulares) */
+
 @media (max-width: 992px) {
     .about-content-wrapper {
         flex-direction: column;
@@ -555,7 +546,7 @@ filter: blur(20px);
     }
     
     .timeline-item {
-        text-align: left; /* Mantém o texto alinhado à esquerda nos passos */
+        text-align: left; 
     }
 }
 
@@ -564,14 +555,14 @@ filter: blur(20px);
         font-size: 2.2rem;
     }
     
-    /* Ajusta tamanho dos ícones no celular */
+    
     .timeline-icon {
         width: 60px;
         height: 60px;
     }
     
     .about-timeline::before {
-        left: 28px; /* Ajusta a linha para o novo tamanho do ícone */
+        left: 28px; 
     }
     
     .timeline-text {
